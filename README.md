@@ -11,3 +11,4 @@ you can view your status of your workout frm last 7 days.
 [app]()
 
 ![Demo-image](./images/fitness.PNG)
+![Demo-image](./images/fitness2.PNG)
