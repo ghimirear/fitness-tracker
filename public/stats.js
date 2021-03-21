@@ -22,9 +22,10 @@ function generatePalette() {
 }
 
 function populateChart(data) {
-  let durations = data.map(({ totalDuration }) => totalDuration);
+  let durations = calculateTotalDuration(data);
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
+  //let distance = calculateDistance(data);
   const colors = generatePalette();
 
   let line = document.querySelector('#canvas').getContext('2d');
@@ -57,7 +58,7 @@ function populateChart(data) {
           backgroundColor: 'red',
           borderColor: 'red',
           data: durations,
-          fill: false,
+          fill: true,
         },
       ],
     },
@@ -190,6 +191,30 @@ function calculateTotalWeight(data) {
 
   return totals;
 }
+
+function calculateTotalDuration(data) {
+  let totals = [];
+
+  data.forEach((workout) => {
+    const workoutTotal = workout.exercises.reduce((total, {duration}) => { 
+        return total + duration;
+    }, 0);
+
+    totals.push(workoutTotal);
+  });
+
+  return totals;
+}
+// function calculateDistance(data){
+//   let totals;
+//   data.forEach((workout)=>{
+//     const totalDistance = workout.exercises.reduce(({distance})=>{
+//       if(type === "cardio"){
+//       return totals +=distance
+//       }
+//     })
+//   })
+// }
 
 function workoutNames(data) {
   let workouts = [];
