@@ -185,7 +185,7 @@ function calculateTotalWeight(data) {
         return total;
       }
     }, 0);
-
+    console.log(workoutTotal);
     totals.push(workoutTotal);
   });
 
@@ -199,22 +199,12 @@ function calculateTotalDuration(data) {
     const workoutTotal = workout.exercises.reduce((total, {duration}) => { 
         return total + duration;
     }, 0);
-
+console.log(workoutTotal);
     totals.push(workoutTotal);
   });
 
   return totals;
 }
-// function calculateDistance(data){
-//   let totals;
-//   data.forEach((workout)=>{
-//     const totalDistance = workout.exercises.reduce(({distance})=>{
-//       if(type === "cardio"){
-//       return totals +=distance
-//       }
-//     })
-//   })
-// }
 
 function workoutNames(data) {
   let workouts = [];

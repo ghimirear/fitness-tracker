@@ -23,14 +23,17 @@ async function initWorkout() {
 
 function tallyExercises(exercises) {
   const tallied = exercises.reduce((acc, curr) => {
+    //acc.numExercises = (acc.numExercises || 0) + exercises.length;
     if (curr.type === "resistance") {
       acc.totalWeight = (acc.totalWeight || 0) + curr.weight;
       acc.totalSets = (acc.totalSets || 0) + curr.sets;
       acc.totalReps = (acc.totalReps || 0) + curr.reps;
       acc.totalDuration = (acc.totalDuration || 0) + curr.duration;
+      // acc.numExercises = (acc.numExercises || 0) + exercises.length;
     } else if (curr.type === "cardio") {
       acc.totalDistance = (acc.totalDistance || 0) + curr.distance;
       acc.totalDuration = (acc.totalDuration || 0) + curr.duration;
+     
     }
     return acc;
   }, {});
