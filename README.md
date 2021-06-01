@@ -9,6 +9,6 @@ you can view your status of your workout frm last 7 days.
 - mongoose 
 # link to deployed app 
 [app](https://polar-reaches-72266.herokuapp.com/)
-
+# Screenshots 
 ![Demo-image](./images/fitness.PNG)
 ![Demo-image](./images/fitness2.PNG)
