@@ -82,3 +82,5 @@ function renderNoWorkoutText() {
 }
 
 initWorkout();
+
+// mongodb+srv://ghimirear:M26monicamongodb@cluster0.zfvlv.mongodb.net/fitnesstracker?retryWrites=true&w=majority
