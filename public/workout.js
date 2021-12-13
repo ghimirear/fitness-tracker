@@ -2,15 +2,13 @@ async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();
   console.log("Last workout:", lastWorkout);
   if (lastWorkout) {
-    //console.log(lastWorkout)
     document
       .querySelector("a[href='/exercise?']")
       .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
 
     const workoutSummary = {
-     
       date: formatDate(lastWorkout.day),
-      totalDuration: lastWorkout.exercises.duration,
+      totalDuration: lastWorkout.totalDuration,
       numExercises: lastWorkout.exercises.length,
       ...tallyExercises(lastWorkout.exercises)
     };
@@ -23,17 +21,12 @@ async function initWorkout() {
 
 function tallyExercises(exercises) {
   const tallied = exercises.reduce((acc, curr) => {
-    //acc.numExercises = (acc.numExercises || 0) + exercises.length;
     if (curr.type === "resistance") {
       acc.totalWeight = (acc.totalWeight || 0) + curr.weight;
       acc.totalSets = (acc.totalSets || 0) + curr.sets;
       acc.totalReps = (acc.totalReps || 0) + curr.reps;
-      acc.totalDuration = (acc.totalDuration || 0) + curr.duration;
-      // acc.numExercises = (acc.numExercises || 0) + exercises.length;
     } else if (curr.type === "cardio") {
       acc.totalDistance = (acc.totalDistance || 0) + curr.distance;
-      acc.totalDuration = (acc.totalDuration || 0) + curr.duration;
-     
     }
     return acc;
   }, {});

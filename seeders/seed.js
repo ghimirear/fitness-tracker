@@ -1,14 +1,14 @@
 let mongoose = require("mongoose");
-let db = require("../models/workout.js");
+let db = require("../models");
 
-mongoose.connect("mongodb://localhost/Workouts", {
+mongoose.connect("mongodb://localhost/workout", {
   useNewUrlParser: true,
   useFindAndModify: false
 });
 
 let workoutSeed = [
   {
-    day: new Date().setDate(new Date().getDate()-10),
+    day: new Date(new Date().setDate(new Date().getDate() - 10)),
     exercises: [
       {
         type: "resistance",
@@ -21,7 +21,7 @@ let workoutSeed = [
     ]
   },
   {
-    day: new Date().setDate(new Date().getDate()-9),
+    day: new Date(new Date().setDate(new Date().getDate() - 9)),
     exercises: [
       {
         type: "resistance",
@@ -34,7 +34,7 @@ let workoutSeed = [
     ]
   },
   {
-    day: new Date().setDate(new Date().getDate()-8),
+    day: new Date(new Date().setDate(new Date().getDate() - 8)),
     exercises: [
       {
         type: "resistance",
@@ -47,7 +47,7 @@ let workoutSeed = [
     ]
   },
   {
-    day: new Date().setDate(new Date().getDate()-7),
+    day: new Date(new Date().setDate(new Date().getDate() - 7)),
     exercises: [
       {
         type: "cardio",
@@ -58,7 +58,7 @@ let workoutSeed = [
     ]
   },
   {
-    day: new Date().setDate(new Date().getDate()-6),
+    day: new Date(new Date().setDate(new Date().getDate() - 6)),
     exercises: [
       {
         type: "resistance",
@@ -71,7 +71,7 @@ let workoutSeed = [
     ]
   },
   {
-    day: new Date().setDate(new Date().getDate()-5),
+    day: new Date(new Date().setDate(new Date().getDate() - 5)),
     exercises: [
       {
         type: "resistance",
@@ -124,10 +124,10 @@ let workoutSeed = [
   }
 ];
 
-db.Workouts.deleteMany({})
-  .then(() => db.Workouts.insertMany(workoutSeed))
+db.Workout.deleteMany({})
+  .then(() => db.Workout.collection.insertMany(workoutSeed))
   .then(data => {
-    console.log(data.length + " records inserted!");
+    console.log(data.result.n + " records inserted!");
     process.exit(0);
   })
   .catch(err => {
